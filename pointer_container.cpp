@@ -2,11 +2,12 @@
 
 #include <boost/ptr_container/ptr_vector.hpp>
 #include <iostream>
+
 void ex1( )
 {
 	boost::ptr_vector< int > v;
 	
-	v.push_back( new int( 1 ) );
+	v.push_back( new int( 1 ) );  // Allocate memory, meanwhile assigning a value.
 	v.push_back( new int( 2 ) );
 	v.push_back( new int( 3 ) );
 	
@@ -28,11 +29,36 @@ void ex2( )
 	std::cout << v.front( ) << '\n';
 }
 
+#include <boost/ptr_container/ptr_set.hpp>
+#include <boost/ptr_container/indirect_fun.hpp>
+#include <set>
+#include <memory>
+#include <functional>
+
+// Stored with intuitively correct order.
+void ex3( )
+{
+	boost::ptr_set< int > s;
+	s.insert( new int( 2 ) );
+	s.insert( new int( 1 ) );
+	s.insert( new int( 3 ) );
+	s.insert( new int( -1 ) );
+	std::cout << *( s.begin( ) ) << '\n';
+}
+
 int main( )
 {
 	ex1( );
 	std::cout << std::endl;
 	ex2( );
+	std::cout << std::endl;
+	ex3( );
 	
 	return 0;
 }
+/*
+Output:
+3
+1
+-1
+*/
