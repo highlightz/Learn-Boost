@@ -44,6 +44,13 @@ void ex3( )
 	s.insert( new int( 3 ) );
 	s.insert( new int( -1 ) );
 	std::cout << *( s.begin( ) ) << '\n';
+	
+	std::cout << std::endl;
+
+	std::set< std::unique_ptr< int >, boost::indirect_fun< std::less< int > > > v;
+	v.insert( std::unique_ptr< int >( new int( 29 ) ) );
+	v.insert( std::unique_ptr< int >( new int( 13 ) ) );
+	std::cout << **v.begin( ) << '\n';
 }
 
 int main( )
@@ -61,4 +68,5 @@ Output:
 3
 1
 -1
+13
 */
