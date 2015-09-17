@@ -53,6 +53,24 @@ void ex3( )
 	std::cout << **v.begin( ) << '\n';
 }
 
+#include <boost/ptr_container/ptr_vector.hpp>
+#include <boost/ptr_container/ptr_inserter.hpp>
+#include <array>
+#include <iostream>
+#include <algorithm>
+
+void ex4( )
+{
+	boost::ptr_vector< int > v;
+	std::array< int, 3 > a;
+	a[0] = 0;
+	a[1] = 2;
+	a[2] = 4;
+
+	std::copy( a.begin( ), a.end( ), boost::ptr_container::ptr_back_inserter( v ) );
+	std::cout << v.size( ) << '\n';
+}
+
 int main( )
 {
 	ex1( );
@@ -60,7 +78,8 @@ int main( )
 	ex2( );
 	std::cout << std::endl;
 	ex3( );
-	
+	std::cout << std::endl;
+	ex4( );
 	return 0;
 }
 /*
@@ -69,4 +88,5 @@ Output:
 1
 -1
 13
+3
 */
